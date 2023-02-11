@@ -43,6 +43,10 @@ body {
 .book-list-header {
     display: flex;
     flex-direction: row;
+    width: 100%;
+}
+.book-list-header p {
+    width: 25%;
 }
 #book-list {
     display: flex;
@@ -52,4 +56,9 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    border: 1px solid green;
+}
+.book-detail {
+    width: 25%;
 }
