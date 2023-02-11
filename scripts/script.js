@@ -1,0 +1,1 @@
+//instead of arrays/objects, only localstorage will be used
