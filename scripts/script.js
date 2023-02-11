@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     bookList.push(testBookThree);
 
     //adding test books to localstorage
-    localStorage.setItem("0", testBookOne);
-    localStorage.setItem("1", testBookTwo);
-    localStorage.setItem("2", testBookThree);
+    localStorage.setItem("0", JSON.stringify(testBookOne));
+    localStorage.setItem("1", JSON.stringify(testBookTwo));
+    localStorage.setItem("2", JSON.stringify(testBookThree));
 
     //defining the book list element in JS
     let bookListElement = document.getElementById("book-list");
@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let bookElementID = "book-" + (bookList[i].id);
         bookElement.setAttribute("id", bookElementID);
         bookElement.classList.add("book");
+
+        localStorage.getItem(i);
 
         //adding containers for the book   
         const newBookTitleContainer = document.createElement("div");
@@ -95,9 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         bookElement.appendChild(newBookDeleteContainer);
 
         //event listener for reading/unreading a book
-        console.log(bookList[i].id);
         document.getElementById(readUnreadID).addEventListener("click", toggleRead);
-        console.log(readUnreadID);
 
     }
 })
@@ -109,21 +109,27 @@ let addBook = function(e) {
 
 //function to read/unread a book
 let toggleRead = function(e) {
-    console.log("read/unread");
-    console.log(e.target.id);
     let id = e.target.id;
     if (document.getElementById(id).innerHTML == "READ") {
-        console.log("is read");
         document.getElementById(id).innerHTML = "UNREAD";
         //gets the id to then change the localstorage
         id = id.match(/\d+/g);
+        //console.log(bookList[id]);
+        bookList[id].status = "UNREAD";
         console.log(bookList[id]);
+        console.log("local inainte: " + localStorage[id]);
+        localStorage.setItem(id, JSON.stringify(bookList[id]));
+        console.log("local dupa: " + localStorage[id]);
     }
     else {
-        console.log("is not read");
         document.getElementById(id).innerHTML = "READ";
         //gets the id to then change the localstorage
         id = id.match(/\d+/g);
+        //console.log(bookList[id]);
+        bookList[id].status = "READ";
         console.log(bookList[id]);
+        console.log("local inainte: " + localStorage[id]);
+        localStorage.setItem(id, JSON.stringify(bookList[id]));
+        console.log("local dupa: " + localStorage[id]);
     }
 }
