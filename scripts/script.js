@@ -49,8 +49,60 @@ function addBook(e) {
 }
 
 bookList.forEach((element, index) => {
-    console.log("index");
-    console.log(index);
-    console.log("element");
+    console.log("-------------------");
     console.log(element);
+
+    console.log(JSON.parse(element[1]));
+    console.log(JSON.parse(element[1]).id);
+
+    //getting values from props in localstorage
+    let title = JSON.parse(element[1]).title;
+    let author = JSON.parse(element[1]).author;
+    let status = JSON.parse(element[1]).status;
+    let id = JSON.parse(element[1]).id;
+
+    console.log(title + " " + author + " " + status + " " + id);
+
+    //creating html elements for the books
+    let bookE = document.createElement("div");
+    bookE.classList.add("book");
+    bookE.setAttribute("id", "book-"+id);
+    let bookListE = document.getElementById("book-list");
+    bookListE.appendChild(bookE);
+
+    //adding containers for each book detail
+    //title, author, status, delete
+    let bookTitleContainerE = document.createElement("div");
+    let bookAuthorContainerE = document.createElement("div");
+    let bookStatusContainerE = document.createElement("div");
+    let bookDeleteContainerE = document.createElement("div");
+
+    //adding classes for css styling on containers
+    bookTitleContainerE.classList.add("book-detail");
+    bookAuthorContainerE.classList.add("book-detail");
+    bookStatusContainerE.classList.add("book-detail");
+    bookDeleteContainerE.classList.add("book-detail");
+
+    //adding the containers on the page
+    bookE.appendChild(bookTitleContainerE);
+    bookE.appendChild(bookAuthorContainerE);
+    bookE.appendChild(bookStatusContainerE);
+    bookE.appendChild(bookDeleteContainerE);
+
+    //adding title, author, status, delete in the containers
+    let bookTitleE = document.createElement("p");
+    bookTitleE.innerHTML = title;
+    let bookAuthorE = document.createElement("p");
+    bookAuthorE.innerHTML = author;
+    let bookStatusE = document.createElement("button");
+    bookStatusE.innerHTML = status;
+    bookStatusE.setAttribute("id", "status-"+id);
+    let bookDeleteE = document.createElement("button");
+    bookDeleteE.innerHTML = "delete"
+    bookDeleteE.setAttribute("id", "delete-"+id);
+    bookTitleContainerE.appendChild(bookTitleE);
+    bookAuthorContainerE.appendChild(bookAuthorE);
+    bookStatusContainerE.appendChild(bookStatusE);
+    bookDeleteContainerE.appendChild(bookDeleteE);
+
 });
