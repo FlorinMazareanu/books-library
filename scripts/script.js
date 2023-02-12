@@ -54,6 +54,18 @@ function addBook(e) {
 //function to delete a Book
 
 function deleteBook(e) {
+    let idD = e.target.id;
+    //console.log(idD);
+
+    //using regex to get the id so it won't be "delete-id"
+    let id = idD.match(/\d+/g).join([]);
+    console.log(id);
+
+    //removing the key in localstorage
+    localStorage.removeItem(id);
+
+    //reloads the page so that all books can be loaded on the page
+    window.location.reload();
 
 }
 
@@ -75,9 +87,9 @@ function setStatus(e) {
     //console.log(JSON.parse(localStorage[id]).status);
 
     let temp = JSON.parse(localStorage[id]);
-    console.log("temp");
-    console.log(temp);
-    console.log(temp.status);
+    //console.log("temp");
+    //console.log(temp);
+    //console.log(temp.status);
 
     let currentStatus = JSON.parse(localStorage[id]).status;
     //console.log("currentStatus:");
@@ -91,24 +103,24 @@ function setStatus(e) {
         //let newStatus = "unread";
         //console.log(JSON.parse(localStorage[id]).status);
         //localStorage.setItem(id, );
-        console.log("current status is read");
-        console.log("changing...");
+        //console.log("current status is read");
+        //console.log("changing...");
         temp.status = "unread";
-        console.log("temp is now:");
-        console.log(temp);
-        console.log("changing in localstorage");
+        //console.log("temp is now:");
+        //console.log(temp);
+        //console.log("changing in localstorage");
         localStorage.setItem(id, JSON.stringify(temp));
         
     }
     else {
         //localStorage.setItem(id, "read test");
         //console.log(JSON.parse(localStorage[id]).status);
-        console.log("current status is unread");
-        console.log("changing...");
+        //console.log("current status is unread");
+        //console.log("changing...");
         temp.status = "read";
-        console.log("temp is now:");
-        console.log(temp);
-        console.log("changing in localstorage");
+        //console.log("temp is now:");
+        //console.log(temp);
+        //console.log("changing in localstorage");
         localStorage.setItem(id, JSON.stringify(temp));
     }
 
