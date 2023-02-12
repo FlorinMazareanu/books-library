@@ -1,3 +1,11 @@
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+    loader.classList.add("loader-hidden");
+    loader.addEventListener("transitionend", () => {
+        document.body.removeChild("loader");
+    })
+})
+
 //constructor function for Book
 //data will be stored in localstorage
 //this constructor is only used to add a book in the addBook function
