@@ -1,5 +1,6 @@
 //constructor function for Book
 //data will be stored in localstorage
+//this constructor is only used to add a book in the addBook function
 function Book(title, author, status, id) {
     this.title = title;
     this.author = author;
@@ -28,13 +29,9 @@ function addBook(e) {
     // [0, 0, 0] is used to avoid a bug that sets a key to -infinity
     let idArray = [0, 0, 0];
     bookList.forEach((element, index) => {
-        //console.log(element[0]);
         idArray.push(element[0]);
     });
-    //console.log("idArray:");
-    //console.log(idArray);
     maxID = Math.max(...idArray);
-    //console.log("max id is now: " + maxID);
 
     //setting the id that should be a larger number than maxID
     let id = maxID + 1;
@@ -42,8 +39,6 @@ function addBook(e) {
 
     //constructing a new Book and adding it in localstorage
     let newBook = new Book(title, author, status, id);
-    //console.log("newBook:");
-    //console.log(newBook);
     localStorage.setItem(id, JSON.stringify(newBook));
 
     //reloads the page so that all books can be loaded on the page
@@ -55,7 +50,6 @@ function addBook(e) {
 
 function deleteBook(e) {
     let idD = e.target.id;
-    //console.log(idD);
 
     //using regex to get the id so it won't be "delete-id"
     let id = idD.match(/\d+/g).join([]);
@@ -73,77 +67,44 @@ function deleteBook(e) {
 //executes when the status button is clicked
 
 function setStatus(e) {
-    //console.log(e.target.id);
+
     let idE = e.target.id;
 
     //using regex to get the id so it won't be "status-id"
     let id = idE.match(/\d+/g).join([]);
-    //console.log("id:");
-    //console.log(id);
 
-    //console.log(localStorage);
-    //console.log(localStorage[id]);
-    //console.log(JSON.parse(localStorage[id]));
-    //console.log(JSON.parse(localStorage[id]).status);
-
-    let temp = JSON.parse(localStorage[id]);
-    //console.log("temp");
-    //console.log(temp);
-    //console.log(temp.status);
-
+    //getting the current read/unread status of the selected book from localstorage
+    //the current status will be stored in a temp
+    let temp = JSON.parse(localStorage[id]);  
     let currentStatus = JSON.parse(localStorage[id]).status;
-    //console.log("currentStatus:");
-    //console.log(currentStatus);
 
+    //if/else for status change
     if (currentStatus == "read") {
-        //localStorage.setItem(id, "unread test");
-        //console.log(JSON.parse(localStorage[id]).status);
-        //JSON.parse(localStorage[id]).status = "unread";
-        //console.log("change:");
-        //let newStatus = "unread";
-        //console.log(JSON.parse(localStorage[id]).status);
-        //localStorage.setItem(id, );
-        //console.log("current status is read");
-        //console.log("changing...");
+        //changing status in temp
         temp.status = "unread";
-        //console.log("temp is now:");
-        //console.log(temp);
-        //console.log("changing in localstorage");
-        localStorage.setItem(id, JSON.stringify(temp));
-        
+        //changing status in localstorage
+        localStorage.setItem(id, JSON.stringify(temp));       
     }
     else {
-        //localStorage.setItem(id, "read test");
-        //console.log(JSON.parse(localStorage[id]).status);
-        //console.log("current status is unread");
-        //console.log("changing...");
+        //changing status in temp
         temp.status = "read";
-        //console.log("temp is now:");
-        //console.log(temp);
-        //console.log("changing in localstorage");
+        //changing status in localstorage
         localStorage.setItem(id, JSON.stringify(temp));
     }
 
+    //reloads the page so that all books can be loaded on the page
     window.location.reload();
 
 }
 
 //iterating through all the books in localstorage
 bookList.forEach((element, index) => {
-    //console.log("-------------------");
-    //console.log(element);
-
-    //console.log(JSON.parse(element[1]));
-    //console.log(JSON.parse(element[1]).id);
-    //console.log(JSON.parse(element[0]));
 
     //getting values from props in localstorage
     let title = JSON.parse(element[1]).title;
     let author = JSON.parse(element[1]).author;
     let status = JSON.parse(element[1]).status;
     let id = JSON.parse(element[0]);
-
-    //console.log(title + " " + author + " " + status + " " + id);
 
     //creating html elements for the books
     let bookE = document.createElement("div");
@@ -188,8 +149,6 @@ bookList.forEach((element, index) => {
     bookDeleteContainerE.appendChild(bookDeleteE);
 
     //adding event listeners for read/unread and delete
-    //console.log("status:");
-    //console.log(bookStatusE.id);
     bookStatusE.addEventListener("click", setStatus);
     bookDeleteE.addEventListener("click", deleteBook);
 
