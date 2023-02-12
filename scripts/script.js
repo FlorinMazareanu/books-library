@@ -14,6 +14,9 @@ submitButton.addEventListener("click", addBook);
 //defining the bookList
 let bookList = Object.entries(localStorage);
 
+//function to add a book
+//executes when submit is clicked
+
 function addBook(e) {
     //getting values from inputs
     let title = document.getElementById("book-title").value;
@@ -25,13 +28,13 @@ function addBook(e) {
     // [0, 0, 0] is used to avoid a bug that sets a key to -infinity
     let idArray = [0, 0, 0];
     bookList.forEach((element, index) => {
-        console.log(element[0]);
+        //console.log(element[0]);
         idArray.push(element[0]);
     });
-    console.log("idArray:");
-    console.log(idArray);
+    //console.log("idArray:");
+    //console.log(idArray);
     maxID = Math.max(...idArray);
-    console.log("max id is now: " + maxID);
+    //console.log("max id is now: " + maxID);
 
     //setting the id that should be a larger number than maxID
     let id = maxID + 1;
@@ -39,8 +42,8 @@ function addBook(e) {
 
     //constructing a new Book and adding it in localstorage
     let newBook = new Book(title, author, status, id);
-    console.log("newBook:");
-    console.log(newBook);
+    //console.log("newBook:");
+    //console.log(newBook);
     localStorage.setItem(id, JSON.stringify(newBook));
 
     //reloads the page so that all books can be loaded on the page
@@ -48,13 +51,79 @@ function addBook(e) {
     
 }
 
-bookList.forEach((element, index) => {
-    console.log("-------------------");
-    console.log(element);
+//function to delete a Book
 
-    console.log(JSON.parse(element[1]));
-    console.log(JSON.parse(element[1]).id);
-    console.log(JSON.parse(element[0]));
+function deleteBook(e) {
+
+}
+
+//function to set read/unread in localstorage and on the page
+//executes when the status button is clicked
+
+function setStatus(e) {
+    //console.log(e.target.id);
+    let idE = e.target.id;
+
+    //using regex to get the id so it won't be "status-id"
+    let id = idE.match(/\d+/g).join([]);
+    //console.log("id:");
+    //console.log(id);
+
+    //console.log(localStorage);
+    //console.log(localStorage[id]);
+    //console.log(JSON.parse(localStorage[id]));
+    //console.log(JSON.parse(localStorage[id]).status);
+
+    let temp = JSON.parse(localStorage[id]);
+    console.log("temp");
+    console.log(temp);
+    console.log(temp.status);
+
+    let currentStatus = JSON.parse(localStorage[id]).status;
+    //console.log("currentStatus:");
+    //console.log(currentStatus);
+
+    if (currentStatus == "read") {
+        //localStorage.setItem(id, "unread test");
+        //console.log(JSON.parse(localStorage[id]).status);
+        //JSON.parse(localStorage[id]).status = "unread";
+        //console.log("change:");
+        //let newStatus = "unread";
+        //console.log(JSON.parse(localStorage[id]).status);
+        //localStorage.setItem(id, );
+        console.log("current status is read");
+        console.log("changing...");
+        temp.status = "unread";
+        console.log("temp is now:");
+        console.log(temp);
+        console.log("changing in localstorage");
+        localStorage.setItem(id, JSON.stringify(temp));
+        
+    }
+    else {
+        //localStorage.setItem(id, "read test");
+        //console.log(JSON.parse(localStorage[id]).status);
+        console.log("current status is unread");
+        console.log("changing...");
+        temp.status = "read";
+        console.log("temp is now:");
+        console.log(temp);
+        console.log("changing in localstorage");
+        localStorage.setItem(id, JSON.stringify(temp));
+    }
+
+    window.location.reload();
+
+}
+
+//iterating through all the books in localstorage
+bookList.forEach((element, index) => {
+    //console.log("-------------------");
+    //console.log(element);
+
+    //console.log(JSON.parse(element[1]));
+    //console.log(JSON.parse(element[1]).id);
+    //console.log(JSON.parse(element[0]));
 
     //getting values from props in localstorage
     let title = JSON.parse(element[1]).title;
@@ -62,7 +131,7 @@ bookList.forEach((element, index) => {
     let status = JSON.parse(element[1]).status;
     let id = JSON.parse(element[0]);
 
-    console.log(title + " " + author + " " + status + " " + id);
+    //console.log(title + " " + author + " " + status + " " + id);
 
     //creating html elements for the books
     let bookE = document.createElement("div");
@@ -107,6 +176,9 @@ bookList.forEach((element, index) => {
     bookDeleteContainerE.appendChild(bookDeleteE);
 
     //adding event listeners for read/unread and delete
-    console.log(bookStatusE.value);
+    //console.log("status:");
+    //console.log(bookStatusE.id);
+    bookStatusE.addEventListener("click", setStatus);
+    bookDeleteE.addEventListener("click", deleteBook);
 
 });
