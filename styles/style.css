@@ -1,17 +1,31 @@
 body {
-    background-color: aquamarine;
+    background: peru url("../assets/wall.jpg");
     margin: 0px;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /*font-family: 'Cedarville Cursive', 'Roboto', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
 }
 .main-container {
     width: 80vw;
     height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background-image: url("../assets/old-paper.avif");
+    border: 2rem solid peru;
+}
+.intro-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+}
+.intro-text {
+    font-size: 2rem;
+    text-align: center; 
 }
 .intro-container {
     display: flex;
@@ -39,6 +53,7 @@ body {
 .book-list-container {
     display: flex;
     flex-direction: column;
+    width: 90%;
 }
 .book-list-header {
     display: flex;
@@ -51,6 +66,7 @@ body {
 #book-list {
     display: flex;
     flex-direction: column;
+    margin-bottom: 10%;
 }
 .book {
     display: flex;
@@ -61,4 +77,15 @@ body {
 }
 .book-detail {
     width: 25%;
+}
+.menu-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.book-detail p {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.book-form-container {
+    width: 90%;
 }

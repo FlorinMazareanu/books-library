@@ -5,23 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Odin Library</title>
 </head>
 <body>
     <div class="main-container">
         <div class="intro-container">
-            <h1>Odin Project - Library</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia quaerat pariatur a beatae consequatur velit reiciendis esse, quae ex exercitationem.</p>
+            <h1 class="intro-title">Odin Project - Library</h1>
+            <p class="intro-text">This library was made for the Odin Project. Books are added and removed in localstorage</p>
         </div>
         <div class="book-form-container">
             <form class="book-form" onsubmit="return false">
                 <div class="form-inputs">
                     <div class="form-item">
-                        <label class="form-laber" for="book-title">Book title</label>
+                        <label class="form-label menu-text" for="book-title">Book title</label>
                         <input class="form-input" type="text" id="book-title" placeholder="">
                     </div>
                     <div class="form-item">
-                        <label class="form-laber" for="author">Author</label>
+                        <label class="form-label menu-text for="author">Author</label>
                         <input class="form-input" type="text" id="author" placeholder="">
                     </div>
                     <div class="form-item">
@@ -38,10 +41,10 @@
         </div>
         <div class="book-list-container">
             <div class="book-list-header">
-                <p>Book title</p>
-                <p>Author</p>
-                <p>Status</p>
-                <p>Delete</p>
+                <p class="menu-text">Book title</p>
+                <p class="menu-text">Author</p>
+                <p class="menu-text">Status</p>
+                <p class="menu-text">Delete</p>
             </div>
             <div id="book-list">
                 <!--elements are generated in JS on page load-->
