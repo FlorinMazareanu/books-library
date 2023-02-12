@@ -54,12 +54,13 @@ bookList.forEach((element, index) => {
 
     console.log(JSON.parse(element[1]));
     console.log(JSON.parse(element[1]).id);
+    console.log(JSON.parse(element[0]));
 
     //getting values from props in localstorage
     let title = JSON.parse(element[1]).title;
     let author = JSON.parse(element[1]).author;
     let status = JSON.parse(element[1]).status;
-    let id = JSON.parse(element[1]).id;
+    let id = JSON.parse(element[0]);
 
     console.log(title + " " + author + " " + status + " " + id);
 
@@ -96,13 +97,16 @@ bookList.forEach((element, index) => {
     bookAuthorE.innerHTML = author;
     let bookStatusE = document.createElement("button");
     bookStatusE.innerHTML = status;
-    bookStatusE.setAttribute("id", "status-"+id);
+    bookStatusE.setAttribute("id", "status-" + id);
     let bookDeleteE = document.createElement("button");
     bookDeleteE.innerHTML = "delete"
-    bookDeleteE.setAttribute("id", "delete-"+id);
+    bookDeleteE.setAttribute("id", "delete-" + id);
     bookTitleContainerE.appendChild(bookTitleE);
     bookAuthorContainerE.appendChild(bookAuthorE);
     bookStatusContainerE.appendChild(bookStatusE);
     bookDeleteContainerE.appendChild(bookDeleteE);
+
+    //adding event listeners for read/unread and delete
+    console.log(bookStatusE.value);
 
 });
