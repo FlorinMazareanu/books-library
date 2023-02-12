@@ -29,7 +29,9 @@ function addBook(e) {
 
 }
 
+//iterating through all books that are stored in localstorage
 for (let i=0; i<localStorage.length; i++) {
+
     //getting values from props in localstorage
     let currentBook = JSON.parse(localStorage[i]);
     let title = currentBook.title;
@@ -37,4 +39,48 @@ for (let i=0; i<localStorage.length; i++) {
     let status = currentBook.status;
     let id = currentBook.id;
     console.log(currentBook);
+
+    //creating html elements for the books
+    let bookE = document.createElement("div");
+    bookE.classList.add("book");
+    bookE.setAttribute("id", "book-"+id);
+    let bookListE = document.getElementById("book-list");
+    bookListE.appendChild(bookE);
+
+    //adding containers for each book detail
+    //title, author, status, delete
+    let bookTitleContainerE = document.createElement("div");
+    let bookAuthorContainerE = document.createElement("div");
+    let bookStatusContainerE = document.createElement("div");
+    let bookDeleteContainerE = document.createElement("div");
+
+    //adding classes for css styling on containers
+    bookTitleContainerE.classList.add("book-detail");
+    bookAuthorContainerE.classList.add("book-detail");
+    bookStatusContainerE.classList.add("book-detail");
+    bookDeleteContainerE.classList.add("book-detail");
+
+    //adding the containers on the page
+    bookE.appendChild(bookTitleContainerE);
+    bookE.appendChild(bookAuthorContainerE);
+    bookE.appendChild(bookStatusContainerE);
+    bookE.appendChild(bookDeleteContainerE);
+
+    //adding title, author, status, delete in the containers
+    let bookTitleE = document.createElement("p");
+    bookTitleE.innerHTML = title;
+    let bookAuthorE = document.createElement("p");
+    bookAuthorE.innerHTML = author;
+    let bookStatusE = document.createElement("button");
+    bookStatusE.innerHTML = status;
+    let bookDeleteE = document.createElement("button");
+    bookDeleteE.innerHTML = "delete"
+    bookTitleContainerE.appendChild(bookTitleE);
+    bookAuthorContainerE.appendChild(bookAuthorE);
+    bookStatusContainerE.appendChild(bookStatusE);
+    bookDeleteContainerE.appendChild(bookDeleteE);
+    
+
+
+
 }
