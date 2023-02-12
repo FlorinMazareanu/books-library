@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     /*font-family: 'Cedarville Cursive', 'Roboto', sans-serif;*/
     font-family: 'Roboto', sans-serif;
 }
@@ -19,7 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #764100;
-    transition: opacity 1s, visibility 1s;
+    transition: opacity 0.5s, visibility 1s;
 }
 .loader-hidden {
     opacity: 0;
@@ -32,7 +33,7 @@ body {
     border: 35px solid orange;
     border-top-color: darkorange;
     border-radius: 50%;
-    animation: loading 1s ease infinite;
+    animation: loading 0.5s ease infinite;
 }
 @keyframes loading {
     from{
@@ -50,6 +51,7 @@ body {
     align-items: center;
     background-image: url("../assets/old-paper.avif");
     border: 2rem solid peru;
+    border-radius: 0.5rem;
 }
 .intro-title {
     font-size: 3rem;
@@ -106,7 +108,7 @@ body {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    border: 1px solid green;
+    border-top: 3px solid peru;
 }
 .book-detail {
     width: 25%;
@@ -121,4 +123,16 @@ body {
 }
 .book-form-container {
     width: 90%;
+}
+button {
+    background-color:peru;
+    color: black;
+    font-size: 1rem;
+    border: 3px solid #764100;
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+    width: 6rem;
+    height: 2rem;
+    text-align: center;
+    font-weight: 800;
 }
