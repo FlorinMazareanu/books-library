@@ -24,4 +24,17 @@ function addBook(e) {
     let newBook = new Book(title, author, status, localStorage.length);
     localStorage.setItem(localStorage.length, JSON.stringify(newBook));
 
+    //reloads the page so that all books can be loaded on the page
+    window.location.reload();
+
+}
+
+for (let i=0; i<localStorage.length; i++) {
+    //getting values from props in localstorage
+    let currentBook = JSON.parse(localStorage[i]);
+    let title = currentBook.title;
+    let author = currentBook.author;
+    let status = currentBook.status;
+    let id = currentBook.id;
+    console.log(currentBook);
 }
