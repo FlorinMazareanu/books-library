@@ -49,7 +49,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url("../assets/old-paper.avif");
+    background-color: #E6CFA5;
     border: 2rem solid peru;
     border-radius: 0.5rem;
 }
